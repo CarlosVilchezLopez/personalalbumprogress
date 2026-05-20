@@ -11,7 +11,13 @@
     "extract:data": "node scripts/extractStickers.mjs",
     "fetch:images": "node scripts/fetchImagesFromWTC.mjs",
     "link:cracks": "tsx scripts/linkCracks.ts",
-    "validate:data": "tsx scripts/validateDataset.ts"
+    "validate:data": "tsx scripts/validateDataset.ts",
+    "docker:up": "docker compose up -d --build",
+    "docker:down": "docker compose down",
+    "docker:logs": "docker compose logs -f"
+  },
+  "engines": {
+    "node": ">=20.19.0"
   },
   "dependencies": {
     "@vitejs/plugin-react": "^5.0.0",

@@ -1,0 +1,11 @@
+node_modules
+dist
+.npm-cache
+.claude
+.worktrees
+.git
+.gitignore
+*.log
+docs
+.vscode
+.idea

@@ -1,0 +1,10 @@
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: panini-2026-album-tracker:latest
+    container_name: panini-tracker
+    ports:
+      - "8080:80"
+    restart: unless-stopped
