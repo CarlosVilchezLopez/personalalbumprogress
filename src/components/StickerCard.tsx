@@ -29,8 +29,8 @@ export function StickerCard({ sticker, entry, onToggleOwned, onSetDuplicates }: 
 
   return (
     <article className={`sticker-card ${owned ? "is-owned" : ""}`}>
-      <div className={`sticker-card__image ${owned ? "has-image" : "is-empty"}`}>
-        {owned && sticker.imageUrl ? <img src={sticker.imageUrl} alt={title} loading="lazy" /> : null}
+      <div className="sticker-card__image">
+        {sticker.imageUrl ? <img src={sticker.imageUrl} alt={title} loading="lazy" /> : null}
         <span>{sticker.code}</span>
       </div>
       <div className="sticker-card__body">

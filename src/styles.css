@@ -186,62 +186,57 @@ button {
   position: relative;
 }
 
-.sticker-card__image.is-empty {
-  background: repeating-linear-gradient(
-      45deg,
-      #eef1f3 0 12px,
-      #e3e7ea 12px 24px
-    );
-  border: 1px dashed #b8c0c7;
-}
-
 .sticker-card__image img {
-  animation: sticker-paste 520ms cubic-bezier(0.22, 1.4, 0.36, 1) both;
+  filter: grayscale(1) brightness(0.82) contrast(0.9);
   height: 100%;
   object-fit: contain;
   transform-origin: center;
+  transition: filter 600ms ease;
   width: 100%;
 }
 
+.sticker-card.is-owned .sticker-card__image img {
+  animation: sticker-reveal 720ms cubic-bezier(0.22, 1.4, 0.36, 1) both;
+  filter: none;
+}
+
 .sticker-card__image span {
-  background: rgba(255, 255, 255, 0.9);
+  background: rgba(29, 36, 51, 0.85);
   border-radius: 4px;
   bottom: 8px;
+  color: #ffffff;
+  font-size: 1.05rem;
   font-weight: 700;
   left: 8px;
-  padding: 4px 6px;
+  letter-spacing: 0.05em;
+  padding: 6px 10px;
   position: absolute;
+  transition: background 240ms ease, font-size 240ms ease, padding 240ms ease;
 }
 
-.sticker-card__image.is-empty span {
-  background: rgba(29, 36, 51, 0.85);
-  bottom: auto;
-  color: #ffffff;
-  font-size: 1.3rem;
-  left: auto;
-  letter-spacing: 0.08em;
-  padding: 8px 14px;
-  position: static;
+.sticker-card.is-owned .sticker-card__image span {
+  background: rgba(255, 255, 255, 0.9);
+  color: #1d2433;
+  font-size: 0.9rem;
+  padding: 4px 6px;
 }
 
-@keyframes sticker-paste {
+@keyframes sticker-reveal {
   0% {
-    filter: brightness(1.4) drop-shadow(0 12px 18px rgba(29, 36, 51, 0.4));
-    opacity: 0;
-    transform: scale(1.45) rotate(-6deg);
+    filter: grayscale(1) brightness(0.82) contrast(0.9);
+    transform: scale(1);
   }
-  55% {
-    filter: brightness(1.05) drop-shadow(0 6px 10px rgba(29, 36, 51, 0.25));
-    opacity: 1;
-    transform: scale(0.94) rotate(2.5deg);
+  35% {
+    filter: grayscale(0.2) brightness(1.35) contrast(1.1) drop-shadow(0 0 14px rgba(255, 220, 120, 0.55));
+    transform: scale(1.08);
   }
-  78% {
-    transform: scale(1.02) rotate(-1deg);
+  70% {
+    filter: grayscale(0) brightness(1.08) drop-shadow(0 0 6px rgba(255, 220, 120, 0.25));
+    transform: scale(0.98);
   }
   100% {
     filter: none;
-    opacity: 1;
-    transform: scale(1) rotate(0deg);
+    transform: scale(1);
   }
 }
 
