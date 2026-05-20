@@ -1,1 +1,5 @@
 .worktrees/
+.claude/
+.npm-cache/
+node_modules/
+dist/
