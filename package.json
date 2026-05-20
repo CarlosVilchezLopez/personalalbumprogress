@@ -10,6 +10,7 @@
     "test:watch": "vitest",
     "extract:data": "node scripts/extractStickers.mjs",
     "fetch:images": "node scripts/fetchImagesFromWTC.mjs",
+    "link:cracks": "tsx scripts/linkCracks.ts",
     "validate:data": "tsx scripts/validateDataset.ts"
   },
   "dependencies": {
