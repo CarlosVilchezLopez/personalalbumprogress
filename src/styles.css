@@ -155,10 +155,24 @@ button {
   display: grid;
   gap: 10px;
   padding: 12px;
+  transform: translateZ(0);
+  transition: transform 0.18s ease, box-shadow 0.18s ease, border-color 0.18s ease;
+  will-change: transform;
+}
+
+.sticker-card:hover {
+  border-color: #1d2433;
+  box-shadow: 0 8px 20px rgba(29, 36, 51, 0.12);
+  transform: scale(1.03);
+  z-index: 2;
 }
 
 .sticker-card.is-owned {
   border-color: #217a65;
+}
+
+.sticker-card.is-owned:hover {
+  border-color: #145a4a;
 }
 
 .sticker-card__image {
