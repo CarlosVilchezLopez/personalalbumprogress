@@ -24,6 +24,27 @@ function extractCodeFromTitle(title) {
   return match ? match[1] : null;
 }
 
+const BADGE_NAME_TOKENS = ["Emblem", "Team Logo", "Team Badge"];
+const PHOTO_NAME_TOKENS = ["Team Photo"];
+
+function parseProductTitle(title) {
+  const parts = title.split("|").map((s) => s.trim());
+  return {
+    name: parts[4] ?? "",
+    team: parts[5] ?? "",
+    rarity: parts[6] ?? ""
+  };
+}
+
+function deriveCategory(name, currentCategory) {
+  if (BADGE_NAME_TOKENS.includes(name)) return "Team Badge";
+  if (PHOTO_NAME_TOKENS.includes(name)) return "Team Photo";
+  if (currentCategory === "Brand / Emblem" || currentCategory === "Host / Tournament" || currentCategory === "FIFA Museum") {
+    return currentCategory;
+  }
+  return "Player";
+}
+
 function cleanImageUrl(src) {
   if (!src) return "";
   return src.split("?")[0];
@@ -71,7 +92,8 @@ async function fetchAllProducts() {
       if (!image) continue;
       const normalized = normalizeRemoteCode(code);
       if (!map.has(normalized)) {
-        map.set(normalized, image);
+        const meta = parseProductTitle(product.title);
+        map.set(normalized, { image, ...meta });
         added++;
       }
     }
@@ -91,21 +113,36 @@ async function main() {
   const stickers = JSON.parse(raw);
 
   let updated = 0;
+  let nameChanges = 0;
+  let categoryChanges = 0;
   let missing = [];
+
   const next = stickers.map((sticker) => {
-    const image = imageMap.get(sticker.code);
-    if (image) {
-      updated++;
-      return { ...sticker, imageUrl: image };
+    const entry = imageMap.get(sticker.code);
+    if (!entry) {
+      missing.push(sticker.code);
+      return sticker;
     }
-    missing.push(sticker.code);
-    return sticker;
+    updated++;
+    const nextName = entry.name || sticker.name;
+    const nextCategory = deriveCategory(nextName, sticker.category);
+    const nextRarity = entry.rarity || sticker.rarity;
+    if (nextName !== sticker.name) nameChanges++;
+    if (nextCategory !== sticker.category) categoryChanges++;
+    return {
+      ...sticker,
+      name: nextName,
+      category: nextCategory,
+      rarity: nextRarity,
+      imageUrl: entry.image
+    };
   });
 
   await writeFile(stickersPath, `${JSON.stringify(next, null, 2)}\n`, "utf8");
-  console.log(`Updated ${updated} of ${stickers.length} stickers with images.`);
+  console.log(`Updated ${updated} of ${stickers.length} stickers.`);
+  console.log(`Name changes: ${nameChanges}, category changes: ${categoryChanges}`);
   if (missing.length) {
-    console.log(`Missing image for ${missing.length} stickers:`);
+    console.log(`Missing entry for ${missing.length} stickers:`);
     console.log(missing.slice(0, 30).join(", "), missing.length > 30 ? `... (+${missing.length - 30} more)` : "");
   }
 }
