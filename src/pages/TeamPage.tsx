@@ -9,11 +9,9 @@ type TeamPageProps = {
   collection: CollectionState;
   onToggleOwned: (code: string, owned: boolean) => void;
   onSetDuplicates: (code: string, duplicates: number) => void;
-  onSetImage: (code: string, image: string) => void;
-  onClearImage: (code: string) => void;
 };
 
-export function TeamPage({ team, stickers, collection, onToggleOwned, onSetDuplicates, onSetImage, onClearImage }: TeamPageProps) {
+export function TeamPage({ team, stickers, collection, onToggleOwned, onSetDuplicates }: TeamPageProps) {
   const teamStickers = stickers.filter((sticker) => sticker.team === team);
   const progress = getOverallProgress(teamStickers, collection);
 
@@ -32,8 +30,6 @@ export function TeamPage({ team, stickers, collection, onToggleOwned, onSetDupli
             entry={collection[sticker.code]}
             onToggleOwned={onToggleOwned}
             onSetDuplicates={onSetDuplicates}
-            onSetImage={onSetImage}
-            onClearImage={onClearImage}
           />
         ))}
       </div>

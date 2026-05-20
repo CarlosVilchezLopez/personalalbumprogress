@@ -234,45 +234,6 @@ button {
   width: 72px;
 }
 
-.sticker-card__image-tools {
-  align-items: center;
-  display: grid;
-  gap: 6px;
-  grid-template-columns: auto 1fr auto;
-}
-
-.sticker-card__image-tools input[type="url"] {
-  border: 1px solid #cfd5dc;
-  border-radius: 6px;
-  font-size: 0.85rem;
-  min-width: 0;
-  padding: 6px 8px;
-}
-
-.sticker-card__image-tools button {
-  font-size: 0.85rem;
-  padding: 6px 10px;
-}
-
-.sticker-card__file-btn {
-  background: #ffffff;
-  border: 1px solid #cfd5dc;
-  border-radius: 6px;
-  cursor: pointer;
-  font-size: 0.85rem;
-  padding: 6px 10px;
-}
-
-.sticker-card__file-btn input {
-  display: none;
-}
-
-.sticker-card__error {
-  color: #b3261e;
-  font-size: 0.8rem;
-  margin: 0;
-}
-
 .settings-panel {
   display: grid;
   gap: 12px;

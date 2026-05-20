@@ -40,8 +40,7 @@ function isCollectionEntry(value: unknown): value is CollectionEntry {
     value.duplicates >= 0 &&
     Number.isInteger(value.duplicates) &&
     typeof value.notes === "string" &&
-    typeof value.updatedAt === "string" &&
-    (value.image === undefined || typeof value.image === "string")
+    typeof value.updatedAt === "string"
   );
 }
 
@@ -136,35 +135,6 @@ export function importCollection(json: string): CollectionState {
   if (!collection) {
     throw new Error("Formato de colección inválido");
   }
-
-  saveCollection(collection);
-  return collection;
-}
-
-export function setImage(code: string, image: string): CollectionState {
-  const collection = loadCollection();
-  const current = collection[code] ?? emptyEntry();
-
-  collection[code] = {
-    ...current,
-    image,
-    updatedAt: now()
-  };
-
-  saveCollection(collection);
-  return collection;
-}
-
-export function clearImage(code: string): CollectionState {
-  const collection = loadCollection();
-  const current = collection[code];
-  if (!current) return collection;
-
-  const { image: _omit, ...rest } = current;
-  collection[code] = {
-    ...rest,
-    updatedAt: now()
-  };
 
   saveCollection(collection);
   return collection;

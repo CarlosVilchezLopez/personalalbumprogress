@@ -8,11 +8,9 @@ type AlbumPageProps = {
   collection: CollectionState;
   onToggleOwned: (code: string, owned: boolean) => void;
   onSetDuplicates: (code: string, duplicates: number) => void;
-  onSetImage: (code: string, image: string) => void;
-  onClearImage: (code: string) => void;
 };
 
-export function AlbumPage({ stickers, collection, onToggleOwned, onSetDuplicates, onSetImage, onClearImage }: AlbumPageProps) {
+export function AlbumPage({ stickers, collection, onToggleOwned, onSetDuplicates }: AlbumPageProps) {
   const [filters, setFilters] = useState<StickerFilterState>({ query: "", team: "", status: "all" });
   const teams = useMemo(() => [...new Set(stickers.map((sticker) => sticker.team))].sort(), [stickers]);
 
@@ -40,8 +38,6 @@ export function AlbumPage({ stickers, collection, onToggleOwned, onSetDuplicates
             entry={collection[sticker.code]}
             onToggleOwned={onToggleOwned}
             onSetDuplicates={onSetDuplicates}
-            onSetImage={onSetImage}
-            onClearImage={onClearImage}
           />
         ))}
       </div>
