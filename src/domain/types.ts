@@ -19,6 +19,7 @@ export type CollectionEntry = {
   duplicates: number;
   notes: string;
   updatedAt: string;
+  image?: string;
 };
 
 export type CollectionState = Record<string, CollectionEntry>;

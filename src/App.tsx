@@ -3,7 +3,7 @@ import stickersData from "./data/stickers.json";
 import { datasetMeta } from "./data/datasetMeta";
 import { getTeamProgress } from "./domain/progress";
 import type { CollectionState, Sticker } from "./domain/types";
-import { clearCollection, exportCollection, importCollection, loadCollection, setDuplicates, toggleOwned } from "./storage/collectionStorage";
+import { clearCollection, clearImage, exportCollection, importCollection, loadCollection, setDuplicates, setImage, toggleOwned } from "./storage/collectionStorage";
 import { AjustesPage } from "./pages/AjustesPage";
 import { AlbumPage } from "./pages/AlbumPage";
 import { DashboardPage } from "./pages/DashboardPage";
@@ -29,6 +29,19 @@ export default function App() {
     setCollection(setDuplicates(code, duplicates));
   }
 
+  function handleSetImage(code: string, image: string) {
+    try {
+      setCollection(setImage(code, image));
+    } catch (err) {
+      const reason = err instanceof Error ? err.message : "Error desconocido";
+      alert(`No se pudo guardar la imagen: ${reason}. Probablemente excediste el cuota de localStorage.`);
+    }
+  }
+
+  function handleClearImage(code: string) {
+    setCollection(clearImage(code));
+  }
+
   function openTeam(team: string) {
     setSelectedTeam(team);
     setPage("team");
@@ -51,10 +64,10 @@ export default function App() {
       </header>
 
       {page === "dashboard" ? <DashboardPage stickers={stickers} collection={collection} teams={teams} onSelectTeam={openTeam} /> : null}
-      {page === "album" ? <AlbumPage stickers={stickers} collection={collection} onToggleOwned={handleToggleOwned} onSetDuplicates={handleSetDuplicates} /> : null}
-      {page === "team" ? <TeamPage team={selectedTeam} stickers={stickers} collection={collection} onToggleOwned={handleToggleOwned} onSetDuplicates={handleSetDuplicates} /> : null}
-      {page === "repetidas" ? <RepetidasPage stickers={stickers} collection={collection} onToggleOwned={handleToggleOwned} onSetDuplicates={handleSetDuplicates} /> : null}
-      {page === "faltantes" ? <FaltantesPage stickers={stickers} collection={collection} onToggleOwned={handleToggleOwned} onSetDuplicates={handleSetDuplicates} /> : null}
+      {page === "album" ? <AlbumPage stickers={stickers} collection={collection} onToggleOwned={handleToggleOwned} onSetDuplicates={handleSetDuplicates} onSetImage={handleSetImage} onClearImage={handleClearImage} /> : null}
+      {page === "team" ? <TeamPage team={selectedTeam} stickers={stickers} collection={collection} onToggleOwned={handleToggleOwned} onSetDuplicates={handleSetDuplicates} onSetImage={handleSetImage} onClearImage={handleClearImage} /> : null}
+      {page === "repetidas" ? <RepetidasPage stickers={stickers} collection={collection} onToggleOwned={handleToggleOwned} onSetDuplicates={handleSetDuplicates} onSetImage={handleSetImage} onClearImage={handleClearImage} /> : null}
+      {page === "faltantes" ? <FaltantesPage stickers={stickers} collection={collection} onToggleOwned={handleToggleOwned} onSetDuplicates={handleSetDuplicates} onSetImage={handleSetImage} onClearImage={handleClearImage} /> : null}
       {page === "ajustes" ? (
         <AjustesPage
           onExport={() => exportCollection(datasetMeta.version)}
