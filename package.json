@@ -9,6 +9,7 @@
     "test": "vitest run",
     "test:watch": "vitest",
     "extract:data": "node scripts/extractStickers.mjs",
+    "fetch:images": "node scripts/fetchImagesFromWTC.mjs",
     "validate:data": "tsx scripts/validateDataset.ts"
   },
   "dependencies": {
