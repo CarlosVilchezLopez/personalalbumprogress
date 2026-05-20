@@ -19,6 +19,15 @@ function normalizeDuplicates(value: string): number {
   return Math.max(0, Math.floor(parsed));
 }
 
+function displayTitle(sticker: Sticker): string {
+  if (sticker.category === "Team Badge") {
+    const variant = sticker.number === 2 ? " (2)" : "";
+    return `${sticker.team} Escudo${variant}`;
+  }
+  if (sticker.category === "Team Photo") return `${sticker.team} Plantilla`;
+  return sticker.name || sticker.code;
+}
+
 async function fileToDownscaledDataUrl(file: File): Promise<string> {
   const dataUrl = await new Promise<string>((resolve, reject) => {
     const reader = new FileReader();
@@ -58,7 +67,7 @@ export function StickerCard({
 }: StickerCardProps) {
   const duplicates = Math.max(0, entry?.duplicates ?? 0);
   const owned = Boolean(entry?.owned || duplicates > 0);
-  const title = sticker.name || sticker.code;
+  const title = displayTitle(sticker);
   const currentImage = entry?.image || sticker.imageUrl;
   const fileInputRef = useRef<HTMLInputElement>(null);
   const [urlInput, setUrlInput] = useState("");
