@@ -91,3 +91,14 @@ npm run docker:down
 ```
 
 La funcion de respaldos compartidos por API esta pensada para `npm run dev`.
+
+## Licencia y Aviso
+
+Este proyecto esta disponible solo para uso personal y no comercial. No se
+permite vender, sublicenciar, alquilar, hospedar como servicio pagado ni
+comercializar este software o trabajos derivados sin permiso previo por escrito
+del titular de copyright.
+
+Este proyecto es una herramienta personal no oficial. No esta afiliado,
+patrocinado ni respaldado por Panini, FIFA ni ninguna entidad relacionada. Las
+marcas, nombres e imagenes pertenecen a sus respectivos propietarios.
