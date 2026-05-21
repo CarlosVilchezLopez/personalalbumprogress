@@ -3,3 +3,7 @@
 .npm-cache/
 node_modules/
 dist/
+backups/
+dev-server*.log
+scripts/devBackupPlugin.d.ts
+scripts/devBackupPlugin.js

@@ -278,6 +278,29 @@ button {
   max-width: 760px;
 }
 
+.backup-list {
+  display: grid;
+  gap: 8px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.backup-list li {
+  align-items: center;
+  background: #ffffff;
+  border: 1px solid #dfe3e8;
+  border-radius: 8px;
+  display: flex;
+  gap: 12px;
+  justify-content: space-between;
+  padding: 10px 12px;
+}
+
+.backup-list span {
+  color: #667085;
+}
+
 @media (max-width: 720px) {
   .app-shell {
     padding: 16px;
@@ -290,5 +313,10 @@ button {
 
   .filters {
     grid-template-columns: 1fr;
+  }
+
+  .backup-list li {
+    align-items: stretch;
+    flex-direction: column;
   }
 }
