@@ -8,10 +8,11 @@ import { AjustesPage } from "./pages/AjustesPage";
 import { AlbumPage } from "./pages/AlbumPage";
 import { DashboardPage } from "./pages/DashboardPage";
 import { FaltantesPage } from "./pages/FaltantesPage";
+import { IntercambiosPage } from "./pages/IntercambiosPage";
 import { RepetidasPage } from "./pages/RepetidasPage";
 import { TeamPage } from "./pages/TeamPage";
 
-type Page = "dashboard" | "album" | "team" | "repetidas" | "faltantes" | "ajustes";
+type Page = "dashboard" | "album" | "team" | "repetidas" | "faltantes" | "intercambios" | "ajustes";
 
 const stickers = stickersData as Sticker[];
 
@@ -46,6 +47,7 @@ export default function App() {
           <button onClick={() => setPage("album")}>Album</button>
           <button onClick={() => setPage("repetidas")}>Repetidas</button>
           <button onClick={() => setPage("faltantes")}>Faltantes</button>
+          <button onClick={() => setPage("intercambios")}>Intercambios</button>
           <button onClick={() => setPage("ajustes")}>Ajustes</button>
         </nav>
       </header>
@@ -55,6 +57,13 @@ export default function App() {
       {page === "team" ? <TeamPage team={selectedTeam} stickers={stickers} collection={collection} onToggleOwned={handleToggleOwned} onSetDuplicates={handleSetDuplicates} /> : null}
       {page === "repetidas" ? <RepetidasPage stickers={stickers} collection={collection} onToggleOwned={handleToggleOwned} onSetDuplicates={handleSetDuplicates} /> : null}
       {page === "faltantes" ? <FaltantesPage stickers={stickers} collection={collection} onToggleOwned={handleToggleOwned} onSetDuplicates={handleSetDuplicates} /> : null}
+      {page === "intercambios" ? (
+        <IntercambiosPage
+          stickers={stickers}
+          collection={collection}
+          datasetVersion={datasetMeta.version}
+        />
+      ) : null}
       {page === "ajustes" ? (
         <AjustesPage
           onExport={() => exportCollection(datasetMeta.version)}
