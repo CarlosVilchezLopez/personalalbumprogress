@@ -301,6 +301,102 @@ button {
   color: #667085;
 }
 
+.intercambios-page {
+  display: grid;
+  gap: 20px;
+  max-width: 960px;
+}
+
+.intercambios-page__mine,
+.intercambios-page__friend,
+.intercambios-page__matches {
+  background: #ffffff;
+  border: 1px solid #dfe3e8;
+  border-radius: 8px;
+  display: grid;
+  gap: 10px;
+  padding: 16px;
+}
+
+.intercambios-page__mine h3,
+.intercambios-page__friend h3,
+.intercambios-page__matches h3 {
+  margin: 0;
+}
+
+.intercambios-page__mine label {
+  display: grid;
+  gap: 4px;
+}
+
+.intercambios-page__mine input[type="text"],
+.intercambios-page__mine input:not([type]),
+.intercambios-page__friend textarea {
+  border: 1px solid #cfd5dc;
+  border-radius: 6px;
+  padding: 10px 12px;
+}
+
+.intercambios-page__actions {
+  align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.intercambios-page__error {
+  background: #fde2e1;
+  border-radius: 6px;
+  color: #8a1f1f;
+  margin: 0;
+  padding: 8px 12px;
+}
+
+.intercambios-page__warning {
+  background: #fff4cf;
+  border-radius: 6px;
+  color: #6b4f0a;
+  margin: 0;
+  padding: 8px 12px;
+}
+
+.trade-bucket {
+  background: #f9fafb;
+  border: 1px solid #e5e7eb;
+  border-radius: 6px;
+  padding: 10px 12px;
+}
+
+.trade-bucket summary {
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.trade-bucket__list {
+  display: grid;
+  gap: 6px;
+  list-style: none;
+  margin: 10px 0 0;
+  padding: 0;
+}
+
+.trade-bucket__item {
+  align-items: center;
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 6px;
+  display: flex;
+  gap: 10px;
+  padding: 6px 8px;
+}
+
+.trade-bucket__item img {
+  border-radius: 4px;
+  height: 48px;
+  object-fit: contain;
+  width: 36px;
+}
+
 @media (max-width: 720px) {
   .app-shell {
     padding: 16px;

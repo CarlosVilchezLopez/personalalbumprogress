@@ -51,7 +51,7 @@ Cada match se asigna a un bucket por prioridad (de más afín a menos):
 2. **Escudos** — `sticker.category === "Team Badge"`.
 3. **Fotos de equipo** — `sticker.category === "Team Photo"`.
 4. **Jugadores por equipo** — `sticker.category === "Player"`. Sub-agrupados por `sticker.team` (ej: "Jugadores Brasil", "Jugadores Argentina").
-5. **Brand / Emblem** — `sticker.category === "Brand / Emblem"` (y cualquier categoría futura no contemplada arriba).
+5. **Otros** — `sticker.category === "Brand / Emblem"`, `"Host / Tournament"`, `"FIFA Museum"`, y cualquier categoría futura no contemplada arriba.
 
 UI muestra buckets en ese orden. Para "Jugadores por equipo", los sub-buckets se ordenan alfabéticamente por team.
 

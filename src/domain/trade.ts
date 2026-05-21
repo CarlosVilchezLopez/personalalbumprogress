@@ -41,7 +41,7 @@ function bucketLabelFor(key: TradeBucketKey): string {
   if (key === "cracks") return "Cracks";
   if (key === "escudos") return "Escudos";
   if (key === "fotos") return "Fotos de equipo";
-  if (key === "brand") return "Brand / Emblem";
+  if (key === "brand") return "Otros";
   return `Jugadores ${key.slice("players:".length)}`;
 }
 
