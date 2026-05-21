@@ -102,3 +102,7 @@ del titular de copyright.
 Este proyecto es una herramienta personal no oficial. No esta afiliado,
 patrocinado ni respaldado por Panini, FIFA ni ninguna entidad relacionada. Las
 marcas, nombres e imagenes pertenecen a sus respectivos propietarios.
+
+La aplicacion puede enlazar imagenes alojadas por terceros. Este repositorio no
+incluye ni reclama propiedad sobre esas imagenes. Los derechos sobre dichas
+imagenes pertenecen a sus respectivos propietarios.
