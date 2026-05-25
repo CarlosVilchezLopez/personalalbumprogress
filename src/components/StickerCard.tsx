@@ -51,14 +51,32 @@ export function StickerCard({ sticker, entry, onToggleOwned, onSetDuplicates }: 
           />
           Tengo
         </label>
-        <input
-          aria-label={`Repetidas de ${sticker.code}`}
-          min={0}
-          step={1}
-          type="number"
-          value={duplicates}
-          onChange={(event) => onSetDuplicates(sticker.code, normalizeDuplicates(event.target.value))}
-        />
+        <div className="sticker-card__duplicates">
+          <button
+            type="button"
+            aria-label={`Restar repetida de ${sticker.code}`}
+            onClick={() => {
+              if (duplicates > 0) onSetDuplicates(sticker.code, duplicates - 1);
+            }}
+          >
+            −
+          </button>
+          <input
+            aria-label={`Repetidas de ${sticker.code}`}
+            min={0}
+            step={1}
+            type="number"
+            value={duplicates}
+            onChange={(event) => onSetDuplicates(sticker.code, normalizeDuplicates(event.target.value))}
+          />
+          <button
+            type="button"
+            aria-label={`Sumar repetida de ${sticker.code}`}
+            onClick={() => onSetDuplicates(sticker.code, duplicates + 1)}
+          >
+            +
+          </button>
+        </div>
       </div>
     </article>
   );
